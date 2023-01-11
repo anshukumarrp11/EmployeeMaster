@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:todo_app_ui_ii_example/model/todo.dart';
 import 'package:todo_app_ui_ii_example/page/edit_todo_page.dart';
 import 'package:todo_app_ui_ii_example/provider/todos.dart';
-import 'package:todo_app_ui_ii_example/utils.dart';
 
 class TodoWidget extends StatelessWidget {
   final Todo todo;
@@ -44,47 +43,45 @@ class TodoWidget extends StatelessWidget {
         onTap: () => editTodo(context, todo),
         child: Container(
           color: Colors.white,
-          padding: EdgeInsets.all(20),
-          child: Row(
+          padding: EdgeInsets.all(15),
+          // child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Checkbox(
-                activeColor: Theme.of(context).primaryColor,
-                checkColor: Colors.white,
-                value: todo.isDone,
-                onChanged: (_) {
-                  final provider =
-                      Provider.of<TodosProvider>(context, listen: false);
-                  final isDone = provider.toggleTodoStatus(todo);
-
-                  Utils.showSnackBar(
-                    context,
-                    isDone ? 'Task completed' : 'Task marked incomplete',
-                  );
-                },
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      todo.title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 22,
-                      ),
-                    ),
-                    if (todo.description.isNotEmpty)
-                      Container(
-                        margin: EdgeInsets.only(top: 4),
-                        child: Text(
-                          todo.description,
-                          style: TextStyle(fontSize: 20, height: 1.5),
-                        ),
-                      )
-                  ],
+              Text(
+                'ID: ' + todo.EmpCode,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
                 ),
+              ),
+              Text(
+                'Name: ' + todo.EmpName,
+                style: TextStyle(fontSize: 20, height: 1.5),
+              ),
+              Text(
+                'Mobile no: ' + todo.Mobile,
+                style: TextStyle(fontSize: 20, height: 1.5),
+              ),
+              Text(
+                'DOB:' + todo.DOB,
+                style: TextStyle(fontSize: 20, height: 1.5),
+              ),
+              Text(
+                'DOJ:' + todo.DOJ,
+                style: TextStyle(fontSize: 20, height: 1.5),
+              ),
+              Text(
+                'Salary: ' + todo.Salary,
+                style: TextStyle(fontSize: 20, height: 1.5),
+              ),
+              Text(
+                'Address: ' + todo.Address,
+                style: TextStyle(fontSize: 20, height: 1.5),
+              ),
+              Text(
+                'Remark: ' + todo.Remark,
+                style: TextStyle(fontSize: 20, height: 1.5),
               ),
             ],
           ),
@@ -94,8 +91,6 @@ class TodoWidget extends StatelessWidget {
   void deleteTodo(BuildContext context, Todo todo) {
     final provider = Provider.of<TodosProvider>(context, listen: false);
     provider.removeTodo(todo);
-
-    Utils.showSnackBar(context, 'Deleted the task');
   }
 
   void editTodo(BuildContext context, Todo todo) => Navigator.of(context).push(

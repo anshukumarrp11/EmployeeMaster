@@ -16,21 +16,33 @@ class EditTodoPage extends StatefulWidget {
 class _EditTodoPageState extends State<EditTodoPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String title;
-  String description;
+  String EmpCode;
+  String EmpName;
+  String Mobile;
+  String DOB;
+  String DOJ;
+  String Salary;
+  String Address;
+  String Remark;
 
   @override
   void initState() {
     super.initState();
 
-    title = widget.todo.title;
-    description = widget.todo.description;
+    EmpCode = widget.todo.EmpCode;
+    EmpName = widget.todo.EmpName;
+    Mobile = widget.todo.Mobile;
+    DOB = widget.todo.DOB;
+    DOJ = widget.todo.DOJ;
+    Salary = widget.todo.Salary;
+    Address = widget.todo.Address;
+    Remark = widget.todo.Remark;
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Edit Todo'),
+          title: Text('Edit Detail'),
           actions: [
             IconButton(
               icon: Icon(Icons.delete),
@@ -49,11 +61,25 @@ class _EditTodoPageState extends State<EditTodoPage> {
           child: Form(
             key: _formKey,
             child: TodoFormWidget(
-              title: title,
-              description: description,
-              onChangedTitle: (title) => setState(() => this.title = title),
-              onChangedDescription: (description) =>
-                  setState(() => this.description = description),
+              EmpCode: EmpCode,
+              EmpName: EmpName,
+              Mobile: Mobile,
+              DOB: DOB,
+              DOJ: DOJ,
+              Salary: Salary,
+              Address: Address,
+              Remark: Remark,
+              onChangedEmpCode: (EmpCode) =>
+                  setState(() => this.EmpCode = EmpCode),
+              onChangedEmpName: (EmpName) =>
+                  setState(() => this.EmpName = EmpName),
+              onChangedMobile: (Mobile) => setState(() => this.Mobile = Mobile),
+              onChangedDOB: (DOB) => setState(() => this.DOB = DOB),
+              onChangedDOJ: (DOJ) => setState(() => this.DOJ = DOJ),
+              onChangedSalary: (Salary) => setState(() => this.Salary = Salary),
+              onChangedAddress: (Address) =>
+                  setState(() => this.Address = Address),
+              onChangedRemark: (Remark) => setState(() => this.Remark = Remark),
               onSavedTodo: saveTodo,
             ),
           ),
@@ -68,7 +94,8 @@ class _EditTodoPageState extends State<EditTodoPage> {
     } else {
       final provider = Provider.of<TodosProvider>(context, listen: false);
 
-      provider.updateTodo(widget.todo, title, description);
+      provider.updateTodo(widget.todo, EmpCode, EmpName, Mobile, DOB, DOJ,
+          Salary, Address, Remark);
 
       Navigator.of(context).pop();
     }

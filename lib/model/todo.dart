@@ -1,21 +1,26 @@
-import 'package:flutter/cupertino.dart';
-
-class TodoField {
-  static const createdTime = 'createdTime';
-}
-
 class Todo {
-  DateTime createdTime;
-  String title;
   String id;
-  String description;
-  bool isDone;
+
+  String EmpCode;
+  String EmpName;
+  String Mobile;
+  String DOB;
+  String DOJ;
+  String Salary;
+  String Address;
+  String Remark;
 
   Todo({
-    @required this.createdTime,
-    @required this.title,
-    this.description = '',
     this.id,
-    this.isDone = false,
+    this.EmpCode,
+    this.EmpName,
+    this.Mobile,
+    this.DOB,
+    this.DOJ,
+    this.Salary,
+    this.Address,
+    this.Remark,
   });
 }
+// (EmpCode, EmpName, Mobile, DOB, DOJ, Salary, Address,
+// Remark)

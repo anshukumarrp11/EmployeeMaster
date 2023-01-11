@@ -9,12 +9,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.0
-
-  # state management
   provider: ^4.3.2+2
-
-  # slidable
   flutter_slidable: ^0.5.7
+  responsive_framework: ^0.2.0
+  fluttertoast: ^8.1.2
 
 dev_dependencies:
   flutter_test:

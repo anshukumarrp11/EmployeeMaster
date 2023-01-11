@@ -11,32 +11,52 @@ class AddTodoDialogWidget extends StatefulWidget {
 
 class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
   final _formKey = GlobalKey<FormState>();
-  String title = '';
-  String description = '';
+
+  String EmpCode = '';
+  String EmpName = '';
+  String Mobile = '';
+  String DOB = '';
+  String DOJ = '';
+  String Salary = '';
+  String Address = '';
+  String Remark = '';
 
   @override
   Widget build(BuildContext context) => AlertDialog(
         content: Form(
           key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Add Todo',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Add Employee',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              TodoFormWidget(
-                onChangedTitle: (title) => setState(() => this.title = title),
-                onChangedDescription: (description) =>
-                    setState(() => this.description = description),
-                onSavedTodo: addTodo,
-              ),
-            ],
+                const SizedBox(height: 8),
+                TodoFormWidget(
+                  onChangedEmpCode: (UserModel) =>
+                      setState(() => this.EmpCode = EmpCode),
+                  onChangedEmpName: (EmpName) =>
+                      setState(() => this.EmpName = EmpName),
+                  onChangedMobile: (Mobile) =>
+                      setState(() => this.Mobile = Mobile),
+                  onChangedDOB: (DOB) => setState(() => this.DOB = DOB),
+                  onChangedDOJ: (DOJ) => setState(() => this.DOJ = DOJ),
+                  onChangedSalary: (Salary) =>
+                      setState(() => this.Salary = Salary),
+                  onChangedAddress: (Address) =>
+                      setState(() => this.Address = Address),
+                  onChangedRemark: (Remark) =>
+                      setState(() => this.Remark = Remark),
+                  onSavedTodo: addTodo,
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -48,10 +68,15 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
       return;
     } else {
       final todo = Todo(
-        id: DateTime.now().toString(),
-        title: title,
-        description: description,
-        createdTime: DateTime.now(),
+        id: EmpCode,
+        EmpCode: EmpCode,
+        EmpName: EmpName,
+        Mobile: Mobile,
+        DOB: DOB,
+        DOJ: DOJ,
+        Salary: Salary,
+        Address: Address,
+        Remark: Remark,
       );
 
       final provider = Provider.of<TodosProvider>(context, listen: false);
